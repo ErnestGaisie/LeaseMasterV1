@@ -13,4 +13,5 @@ class searchedProperty {
     var price: String = ""
     var images: [imagesSearch] = []
     var paths: [String] = []
+    var city: String = ""
 }

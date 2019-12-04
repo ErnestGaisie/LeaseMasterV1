@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import AlamofireImage
 
+
 class searchPropertyTableViewCell: UITableViewCell {
     
     var property: [String]?
@@ -21,8 +22,7 @@ class searchPropertyTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        //print(property)
+
         self.setupCarousel()
     }
 
@@ -33,26 +33,10 @@ class searchPropertyTableViewCell: UITableViewCell {
     }
     
     func setupCarousel() {
-//        print(imagePaths)
-//        print(">>>>>>>>>>>>>>>>>>>>>>>>>IMAGES>>>>>>>>>>>>>>>>>>>>>")
-//        for i in imagePaths!{
-//            Alamofire.request(i).responseImage{ response in
-//                if let image = response.result.value {
-//                    print("image downloaded: \(image)")
-//                }
-//            }
-//        }
         
-        
-//        let slide = ZKCarouselSlide(image: #imageLiteral(resourceName: "img1-1"), title: "", description: "")
-//        let slide1 = ZKCarouselSlide(image: #imageLiteral(resourceName: "img2-1"), title: "", description: "")
-//        let slide2 = ZKCarouselSlide(image: #imageLiteral(resourceName: "img3-1"), title: "", description: "")
-//
-//        self.carouselView.slides = [slide,slide1,slide2]
-        
-        self.carouselView.interval = 1.5
+        self.carouselView.interval = 0
     
-        self.carouselView.start()
+        //self.carouselView.start()
 
     }
     

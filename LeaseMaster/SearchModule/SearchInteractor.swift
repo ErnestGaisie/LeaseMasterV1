@@ -43,16 +43,23 @@ class SearchInteractor {
         var locations: [Location] = [Location]()
         
         for (key, item): (String, JSON) in json {
-            var location = Location()
+            
             
             let cities = item["cities"]
             
+           // var locationsArray: [Location] = []
+            
             for (secKey, secItem): (String, JSON) in cities {
+                var location = Location()
+                
                 location.name = secItem["name"].string!
                 location.slug = secItem["slug"].string!
+                
+                locations += [location]
             }
-            print(locations)
-            locations += [location]
+           // print(locations)
+            //locations += [location]
+            
         }
         
         if locations.count > 0 {
