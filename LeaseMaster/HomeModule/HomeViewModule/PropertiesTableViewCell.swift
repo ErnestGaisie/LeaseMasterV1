@@ -31,7 +31,7 @@ class PropertiesTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupCarousel()
+//        setupCarousel()
         
 //        carousel.addSubview(savebutton)
 //    

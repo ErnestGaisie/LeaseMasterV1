@@ -24,8 +24,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="390" height="317"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beautiful house in East Legon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8TU-q2-W5X">
-                        <rect key="frame" x="21" y="264" width="245" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beautiful house in East Legon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8TU-q2-W5X">
+                        <rect key="frame" x="21" y="264" width="348" height="18"/>
                         <fontDescription key="fontDescription" name="Gilroy-Bold" family="Gilroy-Bold" pointSize="18"/>
                         <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <nil key="highlightedColor"/>
@@ -68,6 +68,7 @@
                     <constraint firstItem="eaP-gd-zLq" firstAttribute="top" secondItem="8TU-q2-W5X" secondAttribute="bottom" constant="8" id="ZNZ-fx-xiT"/>
                     <constraint firstItem="D2L-LI-Tca" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17" id="bdw-zb-bPQ"/>
                     <constraint firstAttribute="bottom" secondItem="eaP-gd-zLq" secondAttribute="bottom" constant="14" id="dra-b7-k9d"/>
+                    <constraint firstItem="8TU-q2-W5X" firstAttribute="trailing" secondItem="D2L-LI-Tca" secondAttribute="trailing" id="mFW-Og-k2l"/>
                     <constraint firstItem="aZq-KV-fPb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="1" id="r6Z-vj-PHI"/>
                 </constraints>
             </tableViewCellContentView>
