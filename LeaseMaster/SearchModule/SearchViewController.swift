@@ -30,13 +30,11 @@ class SearchViewController: UIViewController, SHSearchBarDelegate {
               let HomeStoryboard: UIStoryboard = UIStoryboard.init(name: "TabBarStoryboard", bundle: nil)
               let homeScreen = (HomeStoryboard.instantiateViewController(withIdentifier: "tabi") as? UITabBarController)!
         navigationController?.present(homeScreen, animated: true)
-     //   navigationController?.popToViewController(homeScreen, animated: true)
-//        popViewController(animated: true)
+
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // let searchGlassIconTemplate = UIImage(named: "icon-search")!.withRenderingMode(.alwaysTemplate)
-        // let leftView3 = imageViewWithIcon(searchGlassIconTemplate, rasterSize: rasterSize)
+        
         searchBar1 = defaultSearchBar(withRasterSize: rasterSize, leftView: nil, rightView: nil , delegate: self,useCancelButton: true)
         searchBar1.text = NSLocalizedString("", comment: "")
         view.addSubview(searchBar1)
@@ -58,7 +56,7 @@ class SearchViewController: UIViewController, SHSearchBarDelegate {
         viewConstraints?.forEach { $0.isActive = false }
         
         let constraints = [
-            searchBar1.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 0),
+            searchBar1.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 5),
             searchBar1.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 14),
             searchBar1.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -14),
             searchBar1.heightAnchor.constraint(equalToConstant: searchBarHeight),
@@ -80,6 +78,9 @@ class SearchViewController: UIViewController, SHSearchBarDelegate {
         {
             self.locations = locations
             self.tableView.reloadData()
+            for i in locations{
+                print(i.name)
+            }
             
         }
     }
@@ -174,22 +175,26 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let searchPropertyTableView: searchPropertyViewController = searchPropertyViewController()
+       
+        var selectedLocationName: String = ""
         if searching{
             selectedLocation = searchLocation[indexPath.row].slug
             SearchPropertyPresenter.sharedInstance.callFetchproperties(location: selectedLocation)
+            selectedLocationName = searchLocation[indexPath.row].name
             
         }
         else
         {
             selectedLocation = locations[indexPath.row].slug
             SearchPropertyPresenter.sharedInstance.callFetchproperties(location: selectedLocation)
-            
+            selectedLocationName = locations[indexPath.row].name
         }
-        let storyboard = UIStoryboard.init(name: "Search", bundle: nil)
         
+        
+        let storyboard = UIStoryboard.init(name: "Search", bundle: nil)
         let foundPropertiesViewController = (storyboard.instantiateViewController(withIdentifier: "foundProperties") as? searchPropertyViewController)!
         
+        foundPropertiesViewController.location = selectedLocationName
         
         navigationController?.pushViewController(foundPropertiesViewController, animated: true)
         
