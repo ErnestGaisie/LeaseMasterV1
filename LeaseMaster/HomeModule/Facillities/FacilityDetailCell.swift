@@ -1,16 +1,17 @@
 //
-//  loadMoreCell.swift
+//  FacilityDetailCell.swift
 //  LeaseMaster
 //
-//  Created by Isaac Annan on 04/12/2019.
+//  Created by Isaac Annan on 12/12/2019.
 //  Copyright © 2019 Qodehub. All rights reserved.
 //
 
 import UIKit
 
-class loadMoreCell: UITableViewCell {
+class FacilityDetailCell: UITableViewCell {
     
-    @IBOutlet weak var loadMoreButton: UIButton!
+    @IBOutlet weak var facilityName: UILabel!
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()

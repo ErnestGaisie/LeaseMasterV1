@@ -13,6 +13,7 @@ class FacilitiesCell: UITableViewCell, UICollectionViewDelegate, UICollectionVie
    
     
     @IBOutlet weak var facilitiesCollectionView: UICollectionView!
+    @IBOutlet weak var facilitiesDetailButton: UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()

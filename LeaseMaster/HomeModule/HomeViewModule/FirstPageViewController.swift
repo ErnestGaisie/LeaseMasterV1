@@ -53,12 +53,17 @@ class FirstPageViewController: UIViewController,UITableViewDataSource,UITableVie
         super.viewDidLoad()
         
         CircularSpinner.trackPgColor = .LeaseMasterOrange
-          CircularSpinner.show()
+        CircularSpinner.trackBgColor = .white
+        CircularSpinner.show()
+        
         loadmoreCell?.loadMoreButton.isHidden = true
       
         allPropertiesTableView.delegate = self
         allPropertiesTableView.dataSource = self
         allPropertiesTableView.separatorStyle = .none
+        
+        UserDefaults.standard.set(true, forKey: "USERLOGGEDIN")
+        UserDefaults.standard.set(true, forKey: "USERMADEPAYMENT")
         
         
         
@@ -67,13 +72,17 @@ class FirstPageViewController: UIViewController,UITableViewDataSource,UITableVie
 
         setupPropertyTextfields(textField: propertySearchTextfield)
 //        propertySearchTextfield.addShadowToTextField(color: .gray, cornerRadius: 3, opacity: 0.5)
+//        propertySearchTextfield.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+//        propertySearchTextfield.layer.shadowOpacity = 0.5
+//        propertySearchTextfield.layer.shadowOffset = CGSize(width: 0, height: 0)
+//
         
         let viewPadding = UIView(frame: CGRect(x: 0, y: 0, width: 30 , height: Int(propertySearchTextfield.bounds.size.height)))
         propertySearchTextfield.rightViewMode = UITextField.ViewMode.always
         let imageView = UIImageView(frame: CGRect(x: -5, y: 14, width: 20, height: 20))
         viewPadding.addSubview(imageView)
         let image = UIImage(named: "search-24-px")
-        image?.withTintColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
+        imageView.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         imageView.image = image
         propertySearchTextfield.rightView = viewPadding
      
@@ -88,10 +97,13 @@ class FirstPageViewController: UIViewController,UITableViewDataSource,UITableVie
     
     @objc func onPropertiesRecieved(notification: Notification) {
         if let properties: [property] = notification.object as? [property]{
-            self.properties = properties
+            for i in properties {
+                self.properties += [i]
+            }
+            loadmoreCell?.loadMoreButton.isHidden = false
             self.allPropertiesTableView.reloadData()
            CircularSpinner.hide()
-            
+        
         }
     }
      
@@ -269,6 +281,8 @@ class FirstPageViewController: UIViewController,UITableViewDataSource,UITableVie
         let detailedBedrooms = properties[indexPath.row - 1].bedrooms
         let detailedBathrooms = properties[indexPath.row - 1].bathrooms
         let detailedPropertyDescription = properties[indexPath.row - 1].description
+        let detailedPropertyPrice = properties[indexPath.row - 1].price
+        let detailedPropertyCurrency = properties[indexPath.row - 1].currencyShortname
         
        // let detailedFacilityName = propert
 //        let detailedDescription = properties[indexPath.row - 1].description
@@ -306,6 +320,8 @@ class FirstPageViewController: UIViewController,UITableViewDataSource,UITableVie
         mc.getDetailedBedrooms = detailedBedrooms
         mc.getPropertyBathrooms = detailedBathrooms
         mc.getDetailedDescription = detailedPropertyDescription
+        mc.getPropertyPrice = detailedPropertyPrice
+        mc.getPropertyCurrency = detailedPropertyCurrency
         
         navigationController?.pushViewController(mc, animated: true)
         mc.navigationController?.navigationBar.backgroundColor = .white
