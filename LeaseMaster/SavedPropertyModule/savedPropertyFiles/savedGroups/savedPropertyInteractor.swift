@@ -24,7 +24,7 @@ class savedPropertyInteractor{
     func requestSavedProperties() {
         
         let headers = [
-        "Authorization": "Bearer" + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvbGVhc2VtYXN0ZXIucW9kZWh1Yi5kZXZcL2FwaVwvdjFcL3VzZXJcL2xvZ2luIiwiaWF0IjoxNTc1OTk5MTQ0LCJleHAiOjE1NzYwMDI3NDQsIm5iZiI6MTU3NTk5OTE0NCwianRpIjoiM25NVVlldUNUT1dtZk1HdyIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.PxkJGWgkgWRTMZ0OVvqFhH0coF7fOTMOPXjcN7N2-Hc",
+            "Authorization": "Bearer" + "\(Login.shared.accessToken)",
          ]
         
         Alamofire.request(URL(string: "https://leasemaster.qodehub.dev/api/v1/user/saved/properties")!,

@@ -16,7 +16,8 @@ class groupedPropertyTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        propImageView.layer.cornerRadius = 8.0
+        propImageView.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

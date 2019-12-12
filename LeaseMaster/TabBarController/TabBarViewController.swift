@@ -20,8 +20,8 @@ class TabBarViewController:  UITabBarController, UITabBarControllerDelegate {
         
         let HomeStoryboard: UIStoryboard = UIStoryboard.init(name: "HomeModuleStoryboard", bundle: nil)
         let homeScreen = (HomeStoryboard.instantiateViewController(withIdentifier: "navi") as? UINavigationController)!
-        let SaveStoryboard: UIStoryboard = UIStoryboard.init(name: "HomeModuleStoryboard", bundle: nil)
-        let savedScreen = (SaveStoryboard.instantiateViewController(withIdentifier: "navi") as? UINavigationController)!
+        let SaveStoryboard: UIStoryboard = UIStoryboard.init(name: "SavedProperty", bundle: nil)
+        let savedScreen = (SaveStoryboard.instantiateViewController(withIdentifier: "savedNavigation") as? UINavigationController)!
 
         let MainStoryboard: UIStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
         let loginScreen = (MainStoryboard.instantiateViewController(withIdentifier: "loginNavigationController") as? UINavigationController)!

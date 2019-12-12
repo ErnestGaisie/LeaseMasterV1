@@ -56,6 +56,28 @@ extension savedPropertyViewController : UITableViewDataSource, UITableViewDelega
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let property = properties[indexPath.row]
+        let specProperty = property.properties
+        
+//        let vc = (storyboard?.instantiateViewController(withIdentifier: "savedDetail") as? savedDetailViewController)!
+//
+//        vc.properties = specProperty
+//
+//        navigationController?.pushViewController(vc, animated: true)
+        
+        let storyboard = UIStoryboard.init(name: "SavedProperty", bundle: nil)
+               let vc = (storyboard.instantiateViewController(withIdentifier: "savedDetail") as? savedDetailViewController)!
+        
+        //alet vc: savedDetailViewController = savedDetailViewController(nibName: "groupPropertyCell", bundle: nil)
+               
+               vc.properties = specProperty
+               
+               
+               navigationController?.pushViewController(vc, animated: true)
+
+    }
 
 
 }

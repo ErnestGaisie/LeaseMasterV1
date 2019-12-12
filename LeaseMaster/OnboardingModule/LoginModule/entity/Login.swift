@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+class Login {
+    
+    static let shared: Login = Login()
+    
+    var fullName: String = ""
+    var avatarPath: String?
+    var default_phone: String = ""
+    var email: String = ""
+    var accessToken: String = ""
+}

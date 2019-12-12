@@ -11,5 +11,5 @@ import Foundation
 class savedProperties {
     var name: String = ""
     var propertycount: Int = 0
-    
+    var properties: [savedProperty] = []
 }
