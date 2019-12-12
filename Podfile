@@ -21,6 +21,7 @@ pod 'FacebookShare'
  pod 'SVProgressHUD'
     pod 'Kingfisher'
     pod 'SHSearchBar'
+    pod "SkeletonView"
     
  
 end

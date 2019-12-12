@@ -28,7 +28,7 @@ class searchPropertyInteractor {
                        let json = try JSON(data: data)
                         
                        let secData = json["data"]
-                    
+                    //SearchPropertyPresenter.sharedInstance.sendLocation(locaion: location)
                     self.processSearchProperties(json: secData)
                    }
                    catch {
@@ -52,6 +52,10 @@ class searchPropertyInteractor {
             
             let price = item["price"]
             property.price = price.string!
+            
+            let city = item["city"]
+            let cityName = city["name"].string!
+            property.city = cityName
             
             let arrImages = item["images"]
             
@@ -80,6 +84,7 @@ class searchPropertyInteractor {
         {
             NotificationCenter.default.post(name: Notification.Name("searchedPropertiesReceived"), object:properties)
         }
+        
 }
 
 }

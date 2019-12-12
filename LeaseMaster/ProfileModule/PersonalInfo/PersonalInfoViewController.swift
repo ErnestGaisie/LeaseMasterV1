@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import Kingfisher
 
 private let _PersonalInfoView_Shared_Instance = PersonalInfoViewController()
 
 class PersonalInfoViewController: UIViewController {
+    
+    var userDetails: Login?
     
     class var sharedInstance: PersonalInfoViewController
     {
@@ -31,11 +34,37 @@ class PersonalInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.onLoginDetailsReceived(notification:)), name: Notification.Name( "loginDetailsReceived"), object: nil)
+        
         personalInfoTableView.showsVerticalScrollIndicator = false
         profilePhoto.layer.cornerRadius = profilePhoto.frame.size.height/2
         profilePhoto.clipsToBounds = true
-        // Do any additional setup after loading the view.
+        
+        if UserDefaults.standard.bool(forKey: "ISUSERLOGGEDIN") == true {
+               
+            if Login.shared.avatarPath != nil {
+                       KingfisherManager.shared.retrieveImage(with: URL(string: Login.shared.avatarPath!)!, options: nil, progressBlock: nil, completionHandler: { image, error, cacheType, imageURL in
+                   self.profilePhoto.image = image
+                                           
+                                           })
+               }
+                   else {
+                       self.profilePhoto.image = UIImage(named: "user-icon")
+                   }
+               }
+               else
+               {
+                   self.profilePhoto.image = UIImage(named: "user-icon")
+               }        // Do any additional setup after loading the view.
     }
+    
+    @objc func onLoginDetailsReceived(notification: Notification) {
+          if let loginDetails: Login = notification.object as? Login {
+              self.userDetails = loginDetails
+            self.personalInfoTableView.reloadData()
+          }
+      }
     
 
 }
@@ -74,7 +103,8 @@ extension PersonalInfoViewController: UITableViewDelegate, UITableViewDataSource
             cell.cellLabel.text = "Full Name"
             cell.editButtonReference.tag = indexPath.row
             cell.cancelButtonReference.tag = indexPath.row
-            cell.cellTextfield.text = "Ernest Boamah Gaisie"
+           // cell.cellTextfield.text = userDetails?.fullName
+            cell.cellTextfield.text = Login.shared.fullName
             cell.cellTextfield.tag = indexPath.row
             cell.delegate = self as? customCellDelegate
         }
@@ -82,7 +112,8 @@ extension PersonalInfoViewController: UITableViewDelegate, UITableViewDataSource
              cell.cellLabel.text = "Email Address"
              cell.editButtonReference.tag = indexPath.row
              cell.cancelButtonReference.tag = indexPath.row
-            cell.cellTextfield.text = "ernestyawgasiie@gmail.com"
+           // cell.cellTextfield.text = userDetails?.email
+             cell.cellTextfield.text = Login.shared.email
              cell.cellTextfield.tag = indexPath.row
              cell.delegate = self as? customCellDelegate
         }
@@ -91,7 +122,8 @@ extension PersonalInfoViewController: UITableViewDelegate, UITableViewDataSource
              cell.cellLabel.text = "Mobile Number"
              cell.editButtonReference.tag = indexPath.row
              cell.cancelButtonReference.tag = indexPath.row
-            cell.cellTextfield.text = "0552523469"
+           // cell.cellTextfield.text = userDetails?.default_phone
+             cell.cellTextfield.text = Login.shared.default_phone
              cell.cellTextfield.tag = indexPath.row
              cell.delegate = self as? customCellDelegate
         }
