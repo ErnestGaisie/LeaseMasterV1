@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GA1-Gx-FCZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GA1-Gx-FCZ">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -426,7 +426,7 @@
                                     <constraint firstAttribute="height" constant="54" id="HIK-iy-QQE"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="54" id="xIA-RX-wNd"/>
                                 </constraints>
-                                <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Gilroy-Medium" family="Gilroy-Medium" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
@@ -441,7 +441,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="Urt-2i-3mh"/>
                                 </constraints>
-                                <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Gilroy-Medium" family="Gilroy-Medium" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -507,13 +507,13 @@
         <!--Member Plan View Controller-->
         <scene sceneID="JLX-yR-aCq">
             <objects>
-                <viewController id="wvE-DD-uwJ" customClass="MemberPlanViewController" customModule="LeaseMaster" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="memberPlan" id="wvE-DD-uwJ" customClass="MemberPlanViewController" customModule="LeaseMaster" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GP2-EO-Hmt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paymentplan-bg" translatesAutoresizingMaskIntoConstraints="NO" id="D8s-Xa-Gdk">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QgC-EK-WRb">
                                 <rect key="frame" x="0.0" y="340" width="414" height="354"/>
@@ -579,6 +579,9 @@
                                                     <state key="normal" title="Pay">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="payBut:" destination="vtn-vj-LvB" eventType="touchUpInside" id="r13-At-Vnu"/>
+                                                    </connections>
                                                 </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="kap-gW-ZFa">
                                                     <rect key="frame" x="28" y="235" width="110.5" height="79"/>
@@ -658,7 +661,7 @@
                                 </cells>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a member plan to continue" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YdH-He-9y2">
-                                <rect key="frame" x="20" y="164" width="374" height="73"/>
+                                <rect key="frame" x="20" y="208" width="374" height="73"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="73" id="FnC-kd-vRq"/>
                                 </constraints>
@@ -682,13 +685,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ns4-kA-mCV"/>
                     </view>
+                    <navigationItem key="navigationItem" id="0Dc-hw-ier"/>
                     <connections>
                         <outlet property="collectionView" destination="QgC-EK-WRb" id="J5X-Ge-jk1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VWp-H3-1lj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1000" y="1676"/>
+            <point key="canvasLocation" x="-89.855072463768124" y="1675.4464285714284"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="qXh-1m-D5m">
@@ -857,7 +861,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5h-FD-wLG">
-                                <rect key="frame" x="329" y="511" width="26.5" height="54"/>
+                                <rect key="frame" x="329" y="511" width="26" height="54"/>
                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="eye" catalog="system">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -983,7 +987,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="F6M-dr-eEb"/>
                                 </constraints>
-                                <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Gilroy-Medium" family="Gilroy-Medium" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -1058,7 +1062,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="0zL-HW-KG5"/>
                                 </constraints>
-                                <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Gilroy-Medium" family="Gilroy-Medium" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
@@ -1317,7 +1321,7 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="54" id="1mP-GV-GzC"/>
                                     <constraint firstAttribute="height" constant="54" id="o2F-nR-2IL"/>
                                 </constraints>
-                                <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Gilroy-Medium" family="Gilroy-Medium" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -1327,7 +1331,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="qdh-6b-aHn"/>
                                 </constraints>
-                                <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Gilroy-Medium" family="Gilroy-Medium" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -1565,6 +1569,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ghG-fd-z9n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1000.0000000000001" y="117.85714285714285"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ZCs-bI-NNO">
+            <objects>
+                <navigationController storyboardIdentifier="raveNav" automaticallyAdjustsScrollViewInsets="NO" id="Xxp-AD-ioi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="A1q-ZH-qsZ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wvE-DD-uwJ" kind="relationship" relationship="rootViewController" id="K4u-pI-1IF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r1z-l0-EJw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1000.0000000000001" y="1675.4464285714284"/>
         </scene>
     </scenes>
     <resources>

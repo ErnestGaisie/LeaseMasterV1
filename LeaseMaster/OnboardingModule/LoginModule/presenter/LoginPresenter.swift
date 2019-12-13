@@ -53,10 +53,10 @@ extension LoginPresenter: LoginInteractorToPresenterProtocol {
     }
     
     func loginSuccessfulPeformSegue(success : Bool) {
-        let status = success
-        print("koala")
-        print(status)
-        LoginViewController.sharedInstance.loginChecked(status: status)
+//        let status = success
+//        print("koala")
+//        print(status)
+        LoginViewController.sharedInstance.loginChecked(status: success)
     }
     
     

@@ -19,9 +19,10 @@ struct LoginDetails: Codable {
     let email: String?
     let email_verified_at: String?
     let default_phone: String?
-    let avatar_public_id: Int?
+    let avatar_public_id: String?
     let avatar : String?
     let fullName: String?
+    let avatarPath:String?
 
 
     enum CodingKeys: String, CodingKey {
@@ -35,6 +36,7 @@ struct LoginDetails: Codable {
         case avatar_public_id
         case avatar
         case fullName
+        case avatarPath
     }
 
 }
