@@ -10,19 +10,38 @@ import UIKit
 import Alamofire
 import AlamofireImage
 import Kingfisher
+import SkeletonView
 
-
+private let _SearchPropertyView_Shared_Instance  = searchPropertyViewController()
 class searchPropertyViewController: UIViewController {
+    class var sharedInstance: searchPropertyViewController
+       {
+           return _SearchPropertyView_Shared_Instance
+       }
     
     var properties: [searchedProperty] = [searchedProperty]()
+    var location: String = ""
+    var receivedStatus = false
 
+    @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var searchPropertyTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        CircularSpinner.trackPgColor = .LeaseMasterOrange
-        CircularSpinner.show()
-        NotificationCenter.default.addObserver(self, selector: #selector(onPropertiesReceived(notification:)), name: Notification.Name("searchedPropertiesReceived"), object: nil)
-    
+        searchTextField.text = "   \(location)"
+        searchTextField.borderStyle = .none
+        searchTextField.layer.masksToBounds = false
+        searchTextField.layer.cornerRadius = 4.0;
+        searchTextField.layer.backgroundColor = UIColor.white.cgColor
+        searchTextField.layer.borderColor = UIColor.clear.cgColor
+        searchTextField.layer.shadowColor = UIColor.black.cgColor
+        searchTextField.layer.shadowOffset = CGSize(width: 0, height: 0)
+        searchTextField.layer.shadowOpacity = 0.2
+        searchTextField.layer.shadowRadius = 4.0
+        searchTextField.isUserInteractionEnabled = false
+
+            NotificationCenter.default.addObserver(self, selector: #selector(self.onPropertiesReceived(notification:)), name: Notification.Name("searchedPropertiesReceived"), object: nil)
+        
     }
     
     @objc func onPropertiesReceived(notification: Notification)
@@ -31,49 +50,50 @@ class searchPropertyViewController: UIViewController {
         {
             self.properties = properties
             self.searchPropertyTableView.reloadData()
-            CircularSpinner.hide()
+                
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
 extension searchPropertyViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return properties.count
+        return properties.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 0 {
+        let cell1 = searchPropertyTableView.dequeueReusableCell(withIdentifier: "labelCell") as? labelTableViewCell
+            
+            cell1?.labelText.text = "\(properties.count) properties found"
+            
+            return cell1!
+        }
+        else
+        {
         let cell = searchPropertyTableView.dequeueReusableCell(withIdentifier: "propertyCell") as? searchPropertyTableViewCell
         
-        let property = properties[indexPath.row]
+        let property = properties[indexPath.row - 1]
         
         cell?.nameLabel.text = property.name
         cell?.priceLabel.text = "\(property.price) GHS"
-        
-        //let imagePaths = property.paths
-        //print(property.paths)
-        
-        //cell?.property = property.paths
-        
-        var images: [ZKCarouselSlide] = [ZKCarouselSlide]()
-        print("the properties")
-        print(property.paths)
-        for i in property.paths{
             
-           
-                                  
+        cell?.nameLabel.showAnimatedGradientSkeleton()
+        cell?.priceLabel.showAnimatedGradientSkeleton()
+        cell?.carouselView.showAnimatedGradientSkeleton()
 
+            let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false, block: { timer in
+                
+                cell?.nameLabel.hideSkeleton()
+                                    cell?.priceLabel.hideSkeleton()
+                                        cell?.carouselView.hideSkeleton()
+            })
+            
+                 
+        var images: [ZKCarouselSlide] = [ZKCarouselSlide]()
+       // print("the properties")
+       // print(property.paths)
+        for i in property.paths{
                                   KingfisherManager.shared.retrieveImage(with: URL(string: i)!, options: nil, progressBlock: nil, completionHandler: { image, error, cacheType, imageURL in
                                      
                                       let slide = ZKCarouselSlide(image: image!, title: "", description: "")
@@ -82,28 +102,23 @@ extension searchPropertyViewController: UITableViewDelegate,UITableViewDataSourc
                                       cell?.carouselView.slides = images
                                   
                                   })
-                                     
-                                   
-                            
-                                  
-//
-//                    Alamofire.request(i).responseImage{ response in
-//                        if let image = response.result.value {
-//                            //print("image downloaded: \(image)/ \(indexPath.row)")
-//                            let slide = ZKCarouselSlide(image: image, title: "", description: "")
-//                            images += [slide]
-//
-//                            cell?.carouselView.slides = images
-//                        }
-//                    }
         
                 }
         
+            return cell!
+        }
         
-        
-        
-        return cell!
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     
+        if indexPath.row == 0 {
+            return 77
+        }
+        else
+        {
+            return 330
+        }
+    }
+
 }

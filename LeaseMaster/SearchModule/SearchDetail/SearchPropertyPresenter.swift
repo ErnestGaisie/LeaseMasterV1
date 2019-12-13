@@ -20,5 +20,9 @@ class SearchPropertyPresenter {
         print("LOMAKOSA")
         searchPropertyInteractor.sharedInstance.fetchProperties(location: location)
     }
+    
+//    func sendLocation(locaion: String) {
+//        searchPropertyViewController.sharedInstance.receiveLocation(location: locaion)
+//    }
 
 }

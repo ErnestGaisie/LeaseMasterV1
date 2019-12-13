@@ -14,7 +14,7 @@ import FacebookCore
  private let _View_SharedInstance = LoginViewController()
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
-    var loginStatus: Bool?
+   
     
     class var sharedInstance: LoginViewController
     {
@@ -31,17 +31,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func loginButtonPressed(_ sender: Any) {
         print("you've pressed me")
+        //UserDefaults.standard.set(status, forKey: "ISUSERLOGGEDIN")
+             
          //loginStatus = true
-        if UserDefaults.standard.bool(forKey: "ISUSERLOGGEDIN") == true{
-            print("chicken")
-                  let HomeStoryboard: UIStoryboard = UIStoryboard.init(name: "TabBarStoryboard", bundle: nil)
-                  let homeScreen = (HomeStoryboard.instantiateViewController(withIdentifier: "tabi") as? UITabBarController)!
-                  navigationController?.present(homeScreen, animated: true)
-                
-              }
-              else{
-                        print("Login Unsuccessful")
-                    }
+//        if UserDefaults.standard.bool(forKey: "ISUSERLOGGEDIN") == true{
+//            print("chicken")
+//                  let HomeStoryboard: UIStoryboard = UIStoryboard.init(name: "TabBarStoryboard", bundle: nil)
+//                  let homeScreen = (HomeStoryboard.instantiateViewController(withIdentifier: "tabi") as? UITabBarController)!
+//                  navigationController?.present(homeScreen, animated: true)
+//
+//              }
+//              else{
+//                      print("Login Unsuccessful")
+//                    }
 
         LoginButtonPressedValidateTextFields()
     }
@@ -84,9 +86,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
                     view.addGestureRecognizer(tap)
             NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onLocationsReceived(notification:)), name: Notification.Name("userLoggedIn"), object: nil)
              
             
              
+    }
+    
+    @objc func onLocationsReceived(notification: Notification){
+        if true == notification.object as! Bool {
+            UserDefaults.standard.set(true, forKey: "ISUSERLOGGEDIN")
+            let HomeStoryboard: UIStoryboard = UIStoryboard.init(name: "TabBarStoryboard", bundle: nil)
+            let homeScreen = (HomeStoryboard.instantiateViewController(withIdentifier: "tabi") as? UITabBarController)!
+                self.navigationController?.present(homeScreen, animated: true)
+            
+            
+        }
     }
     
     func myTarget(myTextField: ExpFloatingLabelTextField){
@@ -151,20 +166,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     //
     
-
-
- 
-
-        
-     
-    
-
-    
-   
-    
-    
-    
-    
     
     func LoginButtonPressedValidateTextFields() {
         
@@ -176,6 +177,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         errorLabel.isHidden = true
                          emailTextField.layer.borderColor = UIColor.veryLightPink.cgColor
                           passwordTextField.layer.borderColor = UIColor.veryLightPink.cgColor
+//                         if UserDefaults.standard.bool(forKey: "ISUSERLOGGEDIN") == true{
+//
+//                        }
+//                         else{
+//                            print("try again")
+//                        }
+                        
                          break
                         
                         
@@ -223,17 +231,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
 
 
-
-
-
-
-
-
-
-
-
-
-extension LoginViewController: LoginPresenterToViewProtocol {
+extension LoginViewController:  LoginPresenterToViewProtocol {
     func showStatus(member: LoginDetails) {
         let userEmail = member.email
         let userName = member.fullName
@@ -244,18 +242,29 @@ extension LoginViewController: LoginPresenterToViewProtocol {
     
     func showError(message: String) {
         print("cocopods")
+        print(message)
         let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
     func loginChecked(status: Bool){
-        loginStatus = status
+        print("ABRANTIE")
+        print("\(status)")
         
-        UserDefaults.standard.set(status, forKey: "ISUSERLOGGEDIN")
-        print(loginStatus!)
-        print("ostrich")
+        if status == true{
+            print("workkkkkk")
+//        UserDefaults.standard.set(status, forKey: "ISUSERLOGGEDIN")
+            //let navigation = UINavigationController()
+//        let HomeStoryboard: UIStoryboard = UIStoryboard.init(name: "TabBarStoryboard", bundle: nil)
+//        let homeScreen = (HomeStoryboard.instantiateViewController(withIdentifier: "tabi") as? UITabBarController)!
+//            self.navigationController?.pushViewController(homeScreen, animated: true)
+        }
         
+        else
+        {
+            print("AROMA")
+        }
         
       
     }
