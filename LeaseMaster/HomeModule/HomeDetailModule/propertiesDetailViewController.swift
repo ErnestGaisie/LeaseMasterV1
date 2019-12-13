@@ -26,7 +26,8 @@ class propertiesDetailViewController: UIViewController {
     var getDetailedPrice:String?
     var isMyUserLoggedIn: Bool = false
     
- 
+ let tBar = TabBarViewController()
+    
     @IBOutlet weak var locationLabel: UILabel!
     
     @IBOutlet weak var typeNameLabel: UILabel!
@@ -50,9 +51,27 @@ class propertiesDetailViewController: UIViewController {
    @IBOutlet weak var contactOwnerView: UIView!
     
     
+    let theView: UIView = {
+        let view = UIView()
+        //view.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+        view.backgroundColor = .white
+        return view
+    }()
+    
+    let requestContactButton: UIButton = {
+        let rbutton = UIButton()
+        rbutton.setTitle("Request Contact", for: .normal)
+        rbutton.titleLabel?.font = UIFont(name: "Gilroy-Bold", size: 15)
+        rbutton.frame  = CGRect(x: 0, y: 0, width: 179, height: 48)
+        rbutton.backgroundColor = .orange
+        return rbutton
+    }()
+    
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         if isMyUserLoggedIn == false {
             loginView.isHidden = false
@@ -64,10 +83,12 @@ class propertiesDetailViewController: UIViewController {
         if isMyUserLoggedIn == true {
                 loginView.isHidden = true
        contactOwnerView.isHidden = false
-                  increaseHeightConstraint.constant = 120
+        increaseHeightConstraint.constant = 120
                    
                }
-        bottomView.layer.shadowOpacity = 0.05
+        
+        theView.layer.shadowOpacity = 0.05
+    //    bottomView.layer.shadowOpacity = 0.05
         print("hamcheesegoatmilk")
 //        print(getDetailedPropertyName)
 //        print(getDetailedProperty)
@@ -87,13 +108,32 @@ class propertiesDetailViewController: UIViewController {
                     self.imageSlider.slides = self.images
                   
                   })
-                     
-                      
-            
-                  
-              
+  
         }
+        theView.translatesAutoresizingMaskIntoConstraints = false
+        requestContactButton.translatesAutoresizingMaskIntoConstraints = false
+        theView.addSubview(requestContactButton)
+        view.addSubview(theView)
+        
 //        imageSlider.imgArray = imgArray
+        
+        NSLayoutConstraint(item: requestContactButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 48).isActive = true
+        NSLayoutConstraint(item: requestContactButton, attribute: .trailing, relatedBy: .equal, toItem: theView, attribute: .trailing, multiplier: 1.0, constant: -24).isActive = true
+        
+        NSLayoutConstraint(item: requestContactButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 179).isActive = true
+        
+        NSLayoutConstraint(item: requestContactButton, attribute: .top, relatedBy: .equal, toItem: theView, attribute: .top, multiplier: 1.0, constant: 16).isActive = true
+        
+        
+        NSLayoutConstraint(item: theView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 101).isActive = true
+        NSLayoutConstraint(item: theView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: theView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: theView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: -tBar.tabBar.frame.height).isActive = true
+        
+        
+        
         
         self.propertyDescription.text = getDetailedDescription
         self.propertyName.text = getDetailedPropertyName
@@ -101,10 +141,11 @@ class propertiesDetailViewController: UIViewController {
         self.bathrooms.text = "\(String(describing: getDetailedBathrooms!))"
         self.bedrooms.text = "\(String(describing: getDetailedBedrooms!))"
         self.typeNameLabel.text = getDetailedPropertyType
-        self.priceLabel.text = "\(getDetailedCurrencyShortname!) \(getDetailedPrice!)"
-        
+//        self.priceLabel.text = "\(getDetailedCurrencyShortname!) \(getDetailedPrice!)"
+//        self.priceLabel.text = "100000000000000"
         
     }
+    
     
     @IBAction func didPressRequestContact(_ sender: Any) {
         
@@ -116,11 +157,11 @@ class propertiesDetailViewController: UIViewController {
         contactOwnerView.isHidden = false
         isMyUserLoggedIn = true
         if isMyUserLoggedIn == true {
-                       loginView.isHidden = true
-                          contactOwnerView.isHidden = false
-                          increaseHeightConstraint.constant = 120
+            loginView.isHidden = true
+            contactOwnerView.isHidden = false
+            increaseHeightConstraint.constant = 120
                           
-                      }
+        }
     }
     
     

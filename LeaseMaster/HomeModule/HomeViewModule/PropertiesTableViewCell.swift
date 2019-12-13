@@ -21,9 +21,9 @@ class PropertiesTableViewCell: UITableViewCell {
     
     public var savebutton:UIButton = {
            let butt = UIButton()
-           butt.backgroundColor  = .gray
+           butt.backgroundColor  = .white
            
-           butt.setImage(#imageLiteral(resourceName: "bookmark-border-24-px"), for: .normal)
+           butt.setImage(#imageLiteral(resourceName: "saved-active"), for: .normal)
             
            butt.translatesAutoresizingMaskIntoConstraints = false
             return butt
@@ -31,14 +31,13 @@ class PropertiesTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupCarousel()
+//        setupCarousel()
         
-//        carousel.addSubview(savebutton)
-//    
-//        savebutton.topAnchor.constraint(equalTo: carousel.topAnchor, constant: 15.8).isActive = true
-//             savebutton.trailingAnchor.constraint(equalTo: carousel.trailingAnchor, constant: -15.8).isActive = true
-//             savebutton.heightAnchor.constraint(equalToConstant: 18).isActive = true
-//             savebutton.widthAnchor.constraint(equalToConstant: 10.5).isActive = true
+        carousel.addSubview(savebutton)
+       savebutton.topAnchor.constraint(equalTo: carousel.topAnchor, constant: 15.8).isActive = true
+       savebutton.trailingAnchor.constraint(equalTo: carousel.trailingAnchor, constant: -15.8).isActive = true
+             savebutton.heightAnchor.constraint(equalToConstant: 17).isActive = true
+            savebutton.widthAnchor.constraint(equalToConstant: 18).isActive = true
     }
     
     func setupCarousel(){
@@ -52,6 +51,7 @@ class PropertiesTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
+        print("something spectacular is about to happen here for a short time")
         // Configure the view for the selected state
     }
     

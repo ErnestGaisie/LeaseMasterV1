@@ -22,9 +22,15 @@ class property {
     var typeName: String = ""
     var currencyName: String = ""
     var currencyShortname: String = ""
-    
-    
+    var facilities: [String] = []
+    var payment: [String] = []
 }
+
+class inner {
+    var CurrentPage: Int = 0
+    var NextPage: String = ""
+}
+
 
 
 class images {
