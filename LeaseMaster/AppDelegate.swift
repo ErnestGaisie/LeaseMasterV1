@@ -13,6 +13,7 @@ import GoogleSignIn
 import FBSDKLoginKit
 import FacebookLogin
 import FacebookCore
+import Rave
 
 
 @UIApplicationMain
@@ -39,6 +40,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let attributes = [NSAttributedString.Key.font:  UIFont(name: "Helvetica-Bold", size: 0.1)!, NSAttributedString.Key.foregroundColor: UIColor.clear]
 
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -1000, vertical: 0), for:UIBarMetrics.default)
+        
+        let config = RavePayConfig.sharedConfig()
+                     config.publicKey = "FLWPUBK-f4e4821465b764397b08b1a48cdb7393-X"
+                     config.secretKey = "a729b77265d2948c6eb68aed"
+                     config.buttonThemeColor = .orange
+                     config.themeColor = .orange
+                     
+                     config.isStaging = true
 
        
         return true

@@ -7,27 +7,91 @@
 //
 
 import UIKit
+import Kingfisher
+
 
 class AccountViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    var userDetails: Login = Login()
+
     
+    @IBOutlet weak var accountName: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     
     @IBAction func logoutButton(_ sender: UIButton) {
-        let HomeStoryboard: UIStoryboard = UIStoryboard.init(name: "TabBarStoryboard", bundle: nil)
-        let homeScreen = (HomeStoryboard.instantiateViewController(withIdentifier: "tabi") as? UITabBarController)!
-        navigationController?.present(homeScreen, animated: true)
-                UserDefaults.standard.set(false, forKey: "ISUSERLOGGEDIN")
+        
+        
+        UserDefaults.standard.set(false, forKey: "ISUSERLOGGEDIN")
+        NotificationCenter.default.post(name: Notification.Name("userLoggedIn"), object: false)
 
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(onLoginDetailsReceived(notification:)), name: Notification.Name("loginDetailsReceived"), object: nil)
+        
+        
+        let name = Login.shared.fullName
+        accountName.text = name
+        
+        let avatarPath = Login.shared.avatarPath
+        print("000000000000000000000000000000000000000000000000")
+        print(avatarPath)
+        
+        if UserDefaults.standard.bool(forKey: "ISUSERLOGGEDIN") == true {
+        
+            if avatarPath != nil {
+                KingfisherManager.shared.retrieveImage(with: URL(string: Login.shared.avatarPath!)!, options: nil, progressBlock: nil, completionHandler: { image, error, cacheType, imageURL in
+            self.profileImage.image = image
+                                    
+                                    })
+        }
+            else {
+                self.profileImage.image = UIImage(named: "user-icon")
+            }
+        }
+        else
+        {
+             self.profileImage.image = UIImage(named: "user-icon")
+        }
+        
         profileImage.layer.cornerRadius = profileImage.frame.size.height/2
         profileImage.clipsToBounds = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onLocationsReceived(notification:)), name: Notification.Name("userLoggedIn"), object: nil)
+        
+       
 
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func onLocationsReceived(notification: Notification) {
+        if false == notification.object as! Bool {
+            let HomeStoryboard: UIStoryboard = UIStoryboard.init(name: "TabBarStoryboard", bundle: nil)
+            let homeScreen = (HomeStoryboard.instantiateViewController(withIdentifier: "tabi") as? UITabBarController)!
+            navigationController?.present(homeScreen, animated: true)
+                    
+        }
+    }
+    
+    @objc func onLoginDetailsReceived(notification: Notification) {
+        if let loginDetails: Login = notification.object as? Login {
+            self.userDetails = loginDetails
+           print("AHOSHESH£")
+            print( self.userDetails.fullName)
+            let name = self.userDetails.fullName as String
+            print( self.userDetails.email)
+            print( self.userDetails.avatarPath)
+            print( self.userDetails.default_phone)
+            
+            print("ALLLOOO")
+            print(name)
+         
+            //accountName.text = name
+            
+
+        }
     }
     
 
@@ -46,7 +110,8 @@ class AccountViewController: UIViewController, UITableViewDataSource, UITableVie
             
             if indexPath.row == 0 {
            
-               let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+                let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! firstTableViewCell
+                
                 
                 return cell
             }
@@ -88,6 +153,14 @@ class AccountViewController: UIViewController, UITableViewDataSource, UITableVie
             let header = view as! UITableViewHeaderFooterView
             header.textLabel?.textColor = UIColor.white
         }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 2 {
+            let HomeStoryboard: UIStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
+            let homeScreen = (HomeStoryboard.instantiateViewController(withIdentifier: "raveNav") as? UIViewController)!
+            navigationController?.present(homeScreen, animated: true)
+        }
+    }
 
 
 }
