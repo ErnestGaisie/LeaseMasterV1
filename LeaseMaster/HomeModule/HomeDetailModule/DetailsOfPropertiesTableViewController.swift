@@ -43,10 +43,12 @@ class DetailsOfPropertiesTableViewController: UITableViewController {
           rButton.setTitle("Request Contact", for: .normal)
           rButton.titleLabel?.font = UIFont(name: "Gilroy-Bold", size: 15)
           rButton.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.4549019608, blue: 0.1294117647, alpha: 1)
-        
+          
         rButton.addTarget(self, action: #selector(actOnClick), for: .touchUpInside)
           return rButton
-      }()
+        }()
+    
+    
     
     @objc func actOnClick() {
         print("Enam's new hair style")
@@ -81,7 +83,6 @@ class DetailsOfPropertiesTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
         
         
     }
@@ -212,28 +213,33 @@ class DetailsOfPropertiesTableViewController: UITableViewController {
             
             return cell
         }
+           
         else if indexPath.row == 4{
 
+             pFacilities = []
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell5", for: indexPath) as! FacilitiesCell
             for facility in getProperties!.facilities {
                 self.pFacilities += [facility]
-                
-                cell.addFacilities(items: pFacilities)
             }
+            print("***************just showing the things*****************")
+            print(pFacilities)
+            cell.addFacilities(items: pFacilities)
             
             cell.facilitiesDetailButton.addTarget(self, action: #selector(moveToDetailPage), for: .touchUpInside)
             
             return cell
         }
         else {
+            pPayment = []
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell6", for: indexPath) as! PaymentCell
             for pay in getProperties!.payment {
                 self.pPayment += [pay]
-                print("***************just showing the payment*****************")
-                print(pPayment)
+                
                 
                 cell.addPayment(item: pPayment)
             }
+            print("***************just showing the payment*****************")
+            print(pPayment)
             
             return cell
         }
@@ -244,11 +250,11 @@ class DetailsOfPropertiesTableViewController: UITableViewController {
     @objc func moveToDetailPage(){
         let fVC = (storyboard?.instantiateViewController(withIdentifier: "facilitiesDetail") as? FacilitiesDetailViewController)!
         
-        for facility in getProperties!.facilities {
-            self.pFacilities += [facility]
-            
-            
-        }
+//        for facility in getProperties!.facilities {
+//            self.pFacilities += [facility]
+//
+//
+//        }
         fVC.facilitiesArray = pFacilities
         
         navigationController?.pushViewController(fVC, animated: true)
