@@ -153,6 +153,14 @@ class AccountViewController: UIViewController, UITableViewDataSource, UITableVie
             let header = view as! UITableViewHeaderFooterView
             header.textLabel?.textColor = UIColor.white
         }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 2 {
+            let HomeStoryboard: UIStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
+            let homeScreen = (HomeStoryboard.instantiateViewController(withIdentifier: "raveNav") as? UIViewController)!
+            navigationController?.present(homeScreen, animated: true)
+        }
+    }
 
 
 }

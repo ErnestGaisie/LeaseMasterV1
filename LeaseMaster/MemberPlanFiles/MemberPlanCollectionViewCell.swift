@@ -7,8 +7,16 @@
 //
 
 import UIKit
+import Foundation
+
+protocol customRaveDelegate: class {
+    func navigateToRave(row: Int)
+    //func collapseTableView(row: Int)
+}
 
 class MemberPlanCollectionViewCell: UICollectionViewCell {
+    
+    weak var delegate: customRaveDelegate?
     
     @IBOutlet weak var payPlanLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
@@ -18,7 +26,10 @@ class MemberPlanCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var thirdPoint: UILabel!
     
     
-   
+    @IBAction func payBut(_ sender: UIButton) {
+      delegate?.navigateToRave(row: sender.tag)
+    }
+    
     
     var plan: MemberPlan!
     {

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F21C86623A2C10100357DE0 /* Rave.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F21C86523A2C10100357DE0 /* Rave.framework */; };
+		5F21C86723A2C10100357DE0 /* Rave.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5F21C86523A2C10100357DE0 /* Rave.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5F21C86B23A2C1A900357DE0 /* Rave.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F21C86A23A2C1A900357DE0 /* Rave.storyboard */; };
+		5F21C86D23A2C1D500357DE0 /* raveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F21C86C23A2C1D500357DE0 /* raveViewController.swift */; };
 		5FBB04EC2396721500CBD3A9 /* labelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBB04EB2396721500CBD3A9 /* labelTableViewCell.swift */; };
 		5FD5A470239E796500E171D5 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD5A46F239E796500E171D5 /* Login.swift */; };
 		5FD5A474239ED16000E171D5 /* firstTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD5A473239ED16000E171D5 /* firstTableViewCell.swift */; };
@@ -105,9 +109,33 @@
 		CED411AF239062CC009CCDBE /* TapticEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED411AE239062CC009CCDBE /* TapticEngine.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		5F21C86823A2C10100357DE0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5F21C86723A2C10100357DE0 /* Rave.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		25653B9B99745D1271EA6991 /* Pods_LeaseMaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LeaseMaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AA22065F435EF7683E3B714 /* Pods-LeaseMaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeaseMaster.debug.xcconfig"; path = "Target Support Files/Pods-LeaseMaster/Pods-LeaseMaster.debug.xcconfig"; sourceTree = "<group>"; };
+		5F21C86523A2C10100357DE0 /* Rave.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Rave.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F21C86A23A2C1A900357DE0 /* Rave.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Rave.storyboard; sourceTree = "<group>"; };
+		5F21C86C23A2C1D500357DE0 /* raveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = raveViewController.swift; sourceTree = "<group>"; };
+		5FB7C42123A2BFCF00501EE6 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FB7C42523A2BFE600501EE6 /* BSErrorMessageView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BSErrorMessageView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FB7C42823A2BFF400501EE6 /* IQKeyboardManagerSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IQKeyboardManagerSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FB7C42B23A2C00500501EE6 /* KVNProgress.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KVNProgress.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FB7C42E23A2C00D00501EE6 /* PopupDialog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PopupDialog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FB7C43123A2C01C00501EE6 /* Shimmer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Shimmer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FB7C43423A2C02600501EE6 /* SwiftValidator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftValidator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FBB04EB2396721500CBD3A9 /* labelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = labelTableViewCell.swift; sourceTree = "<group>"; };
 		5FD5A46F239E796500E171D5 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		5FD5A473239ED16000E171D5 /* firstTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firstTableViewCell.swift; sourceTree = "<group>"; };
@@ -213,6 +241,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F21C86623A2C10100357DE0 /* Rave.framework in Frameworks */,
 				BED1E8AC6E68C5FCC63EC109 /* Pods_LeaseMaster.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,6 +249,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F21C86923A2C19500357DE0 /* Rave */ = {
+			isa = PBXGroup;
+			children = (
+				5F21C86A23A2C1A900357DE0 /* Rave.storyboard */,
+				5F21C86C23A2C1D500357DE0 /* raveViewController.swift */,
+			);
+			path = Rave;
+			sourceTree = "<group>";
+		};
 		5FD5A475239FB43100E171D5 /* SavedPropertyModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -427,6 +465,7 @@
 		CE6B751E235DA85C0055480B /* LeaseMaster */ = {
 			isa = PBXGroup;
 			children = (
+				5F21C86923A2C19500357DE0 /* Rave */,
 				5FD5A475239FB43100E171D5 /* SavedPropertyModule */,
 				CED411A1239058C6009CCDBE /* CircularSpinner */,
 				CED4118723903C94009CCDBE /* TabBarController */,
@@ -706,6 +745,14 @@
 		DC79A6385C3C574C0E3AEFAF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5F21C86523A2C10100357DE0 /* Rave.framework */,
+				5FB7C43423A2C02600501EE6 /* SwiftValidator.framework */,
+				5FB7C43123A2C01C00501EE6 /* Shimmer.framework */,
+				5FB7C42E23A2C00D00501EE6 /* PopupDialog.framework */,
+				5FB7C42B23A2C00500501EE6 /* KVNProgress.framework */,
+				5FB7C42823A2BFF400501EE6 /* IQKeyboardManagerSwift.framework */,
+				5FB7C42523A2BFE600501EE6 /* BSErrorMessageView.framework */,
+				5FB7C42123A2BFCF00501EE6 /* Alamofire.framework */,
 				25653B9B99745D1271EA6991 /* Pods_LeaseMaster.framework */,
 			);
 			name = Frameworks;
@@ -724,6 +771,7 @@
 				CE6B751A235DA85C0055480B /* Resources */,
 				63682F1D6F389B7D763C5E87 /* [CP] Embed Pods Frameworks */,
 				6B84AAD13C036E2DE8FC9BE0 /* [CP] Copy Pods Resources */,
+				5F21C86823A2C10100357DE0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -785,6 +833,7 @@
 				CED4119A23905892009CCDBE /* PropertiesTableViewCell.xib in Resources */,
 				CED4118923903CD6009CCDBE /* TabBarStoryboard.storyboard in Resources */,
 				CE6B752C235DA85D0055480B /* Assets.xcassets in Resources */,
+				5F21C86B23A2C1A900357DE0 /* Rave.storyboard in Resources */,
 				CED411AD239058C6009CCDBE /* x_darkGray@3x.png in Resources */,
 				CE6B7527235DA85C0055480B /* Main.storyboard in Resources */,
 				CE6B753B235DAB990055480B /* Radomir Tinkov Free Font EULA .pdf in Resources */,
@@ -867,6 +916,7 @@
 				CED41177238E9AE6009CCDBE /* SearchLocationEntity.swift in Sources */,
 				5FD5A48423A007B600E171D5 /* savedProperty.swift in Sources */,
 				CE6B7524235DA85C0055480B /* SignUpViewController.swift in Sources */,
+				5F21C86D23A2C1D500357DE0 /* raveViewController.swift in Sources */,
 				5FD5A47A239FC9EE00E171D5 /* savedPropertyViewController.swift in Sources */,
 				CE68922B23605F880065CA13 /* MemberPlanViewController.swift in Sources */,
 				CED41181238E9AE6009CCDBE /* SearchPresenter.swift in Sources */,

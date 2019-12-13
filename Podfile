@@ -22,6 +22,15 @@ pod 'FacebookShare'
     pod 'Kingfisher'
     pod 'SHSearchBar'
     pod "SkeletonView"
+
+    pod 'IQKeyboardManagerSwift'
+    pod 'SwiftValidator', :git =>
+    'https://github.com/jpotts18/SwiftValidator.git', :branch => 'master'
+    pod 'BSErrorMessageView', :git =>     'https://github.com/BenjaminSarkisyan/BSErrorMessageView.git'
+    pod 'KVNProgress', '~> 2.3.1'
+    pod 'PopupDialog'
+    pod 'Shimmer'
+    pod  'CreditCardValidator'
     
  
 end
